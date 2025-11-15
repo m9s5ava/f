@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Flowers</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('photo_2025-11-04_00-52-03.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "Poppins", sans-serif;
+            overflow-x: hidden;
+            overflow-y: auto;
+            text-align: center;
+            background-color: #fffaf5;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 90vw;
+            max-width: 1000px;
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flower-box {
+            position: relative;
+            width: 185px;
+            height: 289px;
+            background: white;
+            border: 4px solid brown;
+            border-radius: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: -2;
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            width: 144%;
+            bottom: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            z-index: 10;
+        }
+
+        .flower {
+            position: relative;
+            top: 12%;
+            width: 149px;
+            animation:
+                bloom 3s ease-out forwards,
+                gentleFloat 12s ease-in-out infinite 3s,
+                breathing 6s ease-in-out infinite 3s,
+                softGlow 3s ease-in-out infinite 3s;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        @keyframes gentleFloat {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes breathing {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.06);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes softGlow {
+            0% {
+                filter: drop-shadow(0 0 5px pink);
+            }
+
+            50% {
+                filter: drop-shadow(0 0 20px hotpink);
+            }
+
+            100% {
+                filter: drop-shadow(0 0 5px pink);
+            }
+        }
+
+        @keyframes bloom {
+            0% {
+                transform: scale(0.85) rotate(-2deg);
+                filter: brightness(0.7) blur(1px);
+            }
+
+            40% {
+                transform: scale(1.02) rotate(1deg);
+                filter: brightness(1.08) blur(0.3px);
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+                filter: brightness(1) blur(0);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .glow {
+            animation: glow 2s infinite ease-in-out;
+        }
+
+        @keyframes glow {
+            0% {
+                filter: drop-shadow(0 0 5px pink);
+            }
+
+            50% {
+                filter: drop-shadow(0 0 20px hotpink);
+            }
+
+            100% {
+                filter: drop-shadow(0 0 5px pink);
+            }
+        }
+
+        .flower-text {
+            position: relative;
+            left: 3%;
+            margin-top: 15px;
+            text-align: center;
+            color: brown;
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        .flower-text p:nth-child(2) {
+            font-weight: 400;
+            font-size: 14px;
+            color: #4b0000;
+            margin-top: 5px;
+        }
+
+        .quote {
+           position: absolute;
+    background: white;
+    border: 3px solid brown;
+    border-radius: 20px;
+    padding: 8px 15px;
+      width: 180px;
+    text-align: center;
+    line-height: 1.25;
+    color: #4b0000;
+    font-size: 0.90rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .q1 {
+               top: 14%;
+    left: 41%;
+        }
+
+        .q2 {
+               top: 23%;
+    right: 22%;
+        }
+
+        .q3 {
+             top: 40%;
+    right: 79%;
+        }
+
+        .q4 {
+           top: 40%;
+    right: 3%;
+        }
+
+        .q5 {
+              bottom: 14%;
+    left: 41%;
+
+        }
+
+        .q6 {
+               bottom: 29%;
+    right: 22%;
+        }
+
+        .q7 {
+               top: 58%;
+    left: 22%;
+        }
+
+        .q8 {
+          top: 39%;
+    right: 60%;
+        }
+
+        .q9 {
+           bottom: 62%;
+    left: 22%;
+        }
+
+        .q10 {
+           bottom: 43%;
+    right: 22%;
+        }
+
+        h2 {
+            position: absolute;
+            bottom: 8%;
+            font-family: "Lobster", cursive;
+            color: brown;
+            font-size: 2rem;
+            text-shadow: 0 0 5px #fff;
+        }
+
+        .return-btn {
+            position: absolute;
+              bottom: 2%;
+       right: 45%;
+            background-color: brown;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 28px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .return-btn:hover {
+            background-color: #7a2b2b;
+            transform: scale(1.05);
+        }
+
+        .nameText {
+            position: absolute;
+            top: 0%;
+            font-family: 'Lobster';
+            font-size: 19px;
+            color: hotpink;
+            text-shadow: 0 0 10px pink;
+            animation: glow 2s infinite ease-in-out;
+        }
+
+        /* Hearts container */
+        #hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="hearts-container"></div>
+    <div class="container">
+        <div class="flower-box">
+            <img src="photo4-removebg-preview.png" alt="flower" class="flower pulse glow" />
+            <div class="nameText">🌹 Maryomty 🌹</div>
+            <div class="flower-text">
+                <p>TULIPS</p>
+                <p>your favorite flower</p>
+            </div>
+        </div>
+
+        <div class="quote q1">You’re as pretty as a fresh bunch of flowers, ya Maryomtyy.</div>
+        <div class="quote q2">Being with you feels like getting a surprise bouquet outta nowhere, ya Lmonty.</div>
+        <div class="quote q3">Just like flowers, you make everything around you full of life, ya  <br> Ghasalty.</div>
+        <div class="quote q4">Your presence feels warm and soft, like holding a cozy bunch of flowers close.</div>
+        <div class="quote q5">You’re the one who adds color to my day, just like flowers color the world.</div>
+        <div class="quote q6">You move so gently, like petals dancing in the wind, ya Mryomty.</div>
+        <div class="quote q7">You remind me of a garden after the rain calm, fresh, and full of beauty.</div>
+        <div class="quote q8">Your kindness spreads everywhere, just like the scent of flowers in spring, ya Lemonty.
+        </div>
+        <div class="quote q9">You light up my day like a whole bunch of blooming flowers on a sunny morning.</div>
+        <div class="quote q10">Being around you feels like walking through a field of flowers, peaceful and full of
+            love, ya Ghasalty.</div>
+
+        <h2>Virtual Flowers</h2>
+        <a href="two_page.html"><button class="return-btn">Return</button></a>
+        <footer> Mostafa Mohammed | Love &copy; 2025</footer>
+    </div>
+
+    <script>
+        const flower = document.querySelector(".flower");
+        const heartsContainer = document.getElementById('hearts-container');
+
+        // Hearts floating in background
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            const size = Math.random() * 20 + 10;
+            heart.style.width = size + 'px';
+            heart.style.height = size + 'px';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+
+        // Sparkle dust around flower
+        setInterval(() => {
+            const dust = document.createElement("div");
+            dust.classList.add("sparkle-dust");
+            const rect = flower.getBoundingClientRect();
+            dust.style.left = rect.left + rect.width / 2 + (Math.random() * 30 - 15) + "px";
+            dust.style.top = rect.top + rect.height / 2 + "px";
+            document.body.appendChild(dust);
+            setTimeout(() => dust.remove(), 2000);
+        }, 250);
+
+        // Mini hearts around flower
+        setInterval(() => {
+            const heart = document.createElement("div");
+            heart.classList.add("mini-heart");
+            const rect = flower.getBoundingClientRect();
+            heart.style.left = rect.left + rect.width / 2 + (Math.random() * 40 - 20) + "px";
+            heart.style.top = rect.top + rect.height / 2 + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 2300);
+        }, 900);
+
+        // Click on flower creates hearts
+        flower.addEventListener("click", () => {
+            for (let i = 0; i < 5; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = 200 + (Math.random() * 50 - 25) + 'px';
+                heart.style.top = 200 + 'px';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }
+        });
+
+        // Mouse hover glow
+        flower.addEventListener("mousemove", (e) => {
+            flower.style.filter = "drop-shadow(0 0 30px hotpink)";
+            setTimeout(() => flower.style.filter = "drop-shadow(0 0 10px pink)", 200);
+        });
+    </script>
+</body>
+
+</html>
